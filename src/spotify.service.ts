@@ -7,8 +7,8 @@ import { MusicSearchService } from './music-search.service';
 import { Album } from './model/album';
 import 'dotenv/config';
 
-const SPOTIFY_BASE_API = 'https://api.spotify.com/v1/search';
-const SPOTIFY_TOKEN_API = 'https://accounts.spotify.com/api/token';
+const SPOTIFY_SEARCH_API = 'https://api.spotify.com/v1/search';
+const SPOTIFY_ACCOUNT_API = 'https://accounts.spotify.com/api/token';
 
 @Injectable()
 export class SpotifyService extends MusicSearchService {
@@ -21,11 +21,11 @@ export class SpotifyService extends MusicSearchService {
 
     private requestAccessToken(): Observable<string> {
 
-        const auth = Base64.encode(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_API_CLIENT_SECRET}`);
+        const auth = Base64.encode(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`);
         const data = qs.stringify({ 'grant_type': 'client_credentials' }); // workaround for Axios issue #362
         const headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': `Basic ${auth}` };
 
-        return this.httpService.post(SPOTIFY_TOKEN_API, data, { headers }).pipe(
+        return this.httpService.post(SPOTIFY_ACCOUNT_API, data, { headers }).pipe(
             tap(response => this.ACCESS_TOKEN = response.data.access_token),
             map(response => response.data.access_token)
         );
@@ -39,7 +39,7 @@ export class SpotifyService extends MusicSearchService {
 
         const queryParam = query.toLowerCase().replace(' ', '%20');
         const typeParam = 'album';
-        const url = `${SPOTIFY_BASE_API}?q=artist%3A${queryParam}&type=${typeParam}`;
+        const url = `${SPOTIFY_SEARCH_API}?q=artist%3A${queryParam}&type=${typeParam}`;
 
         return this.getAccessToken().pipe(
             switchMap(token => this.httpService.get(url, { headers: { 'Authorization': `Bearer ${token}` } })),
