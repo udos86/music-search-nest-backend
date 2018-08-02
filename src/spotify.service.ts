@@ -7,7 +7,6 @@ import { MusicSearchService } from './music-search.service';
 import { Album } from './model/album';
 import 'dotenv/config';
 
-const SPOTIFY_CLIENT_ID = '5b5297b8adcc45129cc914c1cf61b6ef';
 const SPOTIFY_BASE_API = 'https://api.spotify.com/v1/search';
 const SPOTIFY_TOKEN_API = 'https://accounts.spotify.com/api/token';
 
@@ -22,7 +21,7 @@ export class SpotifyService extends MusicSearchService {
 
     private requestAccessToken(): Observable<string> {
 
-        const auth = Base64.encode(`${SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_API_CLIENT_SECRET}`);
+        const auth = Base64.encode(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_API_CLIENT_SECRET}`);
         const data = qs.stringify({ 'grant_type': 'client_credentials' }); // workaround for Axios issue #362
         const headers = { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': `Basic ${auth}` };
 
