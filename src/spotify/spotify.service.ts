@@ -53,7 +53,11 @@ export class SpotifyService extends MusicSearchService {
         const albums: Album[] = [];
 
         responseData.forEach(dataObject => {
-            albums.push({ title: dataObject.name, artworkUrl: dataObject.images[1].url });
+            albums.push({ 
+                title: dataObject['name'], 
+                year: (dataObject['release_date'] as string).substring(0, 4),
+                artworkUrl: dataObject['images'][1]['url'] 
+            });
         });
 
         return albums;

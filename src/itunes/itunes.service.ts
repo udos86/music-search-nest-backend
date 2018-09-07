@@ -31,8 +31,9 @@ export class ITunesService extends MusicSearchService {
 
         responseData.forEach(dataObject => {
             albums.push({
-                title: dataObject.collectionName,
-                artworkUrl: (dataObject.artworkUrl100 as string).replace('100x100bb', '300x300bb')
+                title: dataObject['collectionName'],
+                year: (dataObject['releaseDate'] as string).substring(0, 4),
+                artworkUrl: (dataObject['artworkUrl100'] as string).replace('100x100bb', '300x300bb')
             });
         });
 
