@@ -1,4 +1,4 @@
-import { ITunesService } from './../itunes.service';
+import { ITunesService } from './itunes.service';
 import { Controller, Get, Query } from '@nestjs/common';
 
 @Controller('api/v1/itunes/search')

@@ -1,8 +1,8 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MusicSearchService } from './music-search.service';
-import { Album } from './model/album';
+import { MusicSearchService } from '../music-search.service';
+import { Album } from '../model/album';
 
 export const ITUNES_BASE_API = 'https://itunes.apple.com/search';
 

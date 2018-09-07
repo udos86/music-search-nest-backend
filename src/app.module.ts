@@ -3,8 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SpotifyController } from './spotify/spotify.controller';
 import { ITunesController } from './itunes/itunes.controller';
-import { ITunesService } from './itunes.service';
-import { SpotifyService } from './spotify.service';
+import { ITunesService } from 'itunes/itunes.service';
+import { SpotifyService } from 'spotify/spotify.service';
 
 @Module({
   imports: [HttpModule],

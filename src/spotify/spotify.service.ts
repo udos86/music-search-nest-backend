@@ -3,8 +3,8 @@ import { Base64 } from 'js-base64';
 import * as qs from 'qs';
 import { Observable, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { MusicSearchService } from './music-search.service';
-import { Album } from './model/album';
+import { MusicSearchService } from '../music-search.service';
+import { Album } from '../model/album';
 import 'dotenv/config';
 
 const SPOTIFY_SEARCH_API = 'https://api.spotify.com/v1/search';
