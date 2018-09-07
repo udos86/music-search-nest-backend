@@ -35,7 +35,7 @@ export class SpotifyService extends MusicSearchService {
         return this.ACCESS_TOKEN ? of(this.ACCESS_TOKEN) : this.requestAccessToken();
     }
 
-    searchAlbums(query: string): Observable<any> {
+    searchAlbums(query: string): Observable<Album[]> {
 
         const queryParam = query.toLowerCase().replace(' ', '%20');
         const typeParam = 'album';
