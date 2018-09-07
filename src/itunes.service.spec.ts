@@ -1,13 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ItunesService } from './itunes.service';
+import { HttpModule } from '@nestjs/common';
+import { ITunesService } from './itunes.service';
 
 describe('ItunesService', () => {
-  let service: ItunesService;
+  let service: ITunesService;
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ItunesService],
+      imports: [HttpModule],
+      providers: [ITunesService],
     }).compile();
-    service = module.get<ItunesService>(ItunesService);
+    service = module.get<ITunesService>(ITunesService);
   });
   it('should be defined', () => {
     expect(service).toBeDefined();
